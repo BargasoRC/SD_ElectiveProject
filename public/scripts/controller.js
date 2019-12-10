@@ -73,24 +73,63 @@ $(document).ready(function () {
 
   function locate(location) {
     // mymap = L.map('mapid').setView([Location.latitude, Location.longitude], 12.5);
-    console.log(location)
     let Location = JSON.parse(location)
-    console.log(typeof Location)
-    var marker = L.marker([Location.latitude, Location.longitude]).addTo(mymap);
-    // var circle = L.circle([51.508, -0.11], {
-    //     color: 'red',
-    //     fillColor: '#f03',
-    //     fillOpacity: 0.5,
-    //     radius: 500
-    // }).addTo(mymap);
-    // var polygon = L.polygon([
-    //     [51.509, -0.08],
-    //     [51.503, -0.06],
-    //     [51.51, -0.047]
-    // ]).addTo(mymap);
-    var popup = L.popup()
-      .setLatLng([Location.latitude, Location.longitude])
-      .setContent("House Fire Detected!")
-      .openOn(mymap);
+    let confirmation = false
+    if (Location.status !== '0') {
+      console.log('alarm')
+      fireLocations.push(Location)
+    } else {
+      for(var i = 0 ; i < fireLocations.length; ++i){
+        if(Location.latitude === fireLocations[i].latitude && Location.longitude === fireLocations[i].longitude){
+          fireLocations = fireLocations.splice(i,1);
+          confirmation = true
+        }
+      }
+      // marker = L.marker([Location.latitude, Location.longitude]).addTo(mymap);
+      // var circle = L.circle([51.508, -0.11], {
+      //     color: 'red',
+      //     fillColor: '#f03',
+      //     fillOpacity: 0.5,
+      //     radius: 500
+      // }).addTo(mymap);
+      // var polygon = L.polygon([
+      //     [51.509, -0.08],
+      //     [51.503, -0.06],
+      //     [51.51, -0.047]
+      // ]).addTo(mymap);
+      // popup = L.popup()
+      //   .setLatLng([Location.latitude, Location.longitude])
+      //   .setContent("House Fire Detected!")
+      //   .openOn(mymap);
+    }
+    mark(confirmation)
+  }
+  function mark(confirmation) {
+    for (var i = 0; i < fireLocations.length; ++i) {
+      var marker = L.marker([Location.latitude, Location.longitude]).addTo(mymap);
+      // var circle = L.circle([51.508, -0.11], {
+      //     color: 'red',
+      //     fillColor: '#f03',
+      //     fillOpacity: 0.5,
+      //     radius: 500
+      // }).addTo(mymap);
+      // var polygon = L.polygon([
+      //     [51.509, -0.08],
+      //     [51.503, -0.06],
+      //     [51.51, -0.047]
+      // ]).addTo(mymap);
+      // var popup = L.popup()
+      //   .setLatLng([fireLocations[i].latitude, fireLocations[i].longitude])
+      //   .setContent("House Fire Detected!")
+      //   .openOn(mymap);
+      if (confirmation) {
+        mymap.removelayer(marker)
+        // markerGroup.eachLayer(function(layer){
+        //   markerGroup.removeLayer(layer)
+        //   console.log(layer._leaflet_id) 
+        // })
+        console.log('remove')
+      }
+    }
   }
 })
