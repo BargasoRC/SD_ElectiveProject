@@ -27,35 +27,110 @@
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
         integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
         crossorigin=""></script>
+    <script src="https://kit.fontawesome.com/a1813e4a30.js"></script>
     <link rel="stylesheet" type="text/css" href="/public/style/style.css">
 </head>
 
 <body>
-    <div id="header" class="col-md-12">
-        <!-- <div id="headerSub" class="row">
+    <!-- <div id="headerSub" class="col-md-12">
 
-        </div> -->
-        <div id="headerNav" class="row">
-            <button id="logout" type="button" class="btn btn-light">Logout</button>
-        </div>
-        <div id="headerMain" class="row">
-
-        </div>
+    </div> -->
+    <div id="headerNav" class="col-md-12 d-flex justify-content-md-end">
+        <img id="logo" src="./public/assets/logo.png" class="img-circle" alt="Cinque Terre">
     </div>
-    <div class="col-md-12">
-        <center>
-            <div id="subHeader" class="row">
-
+    <div class="container-fluid">
+        <div class="row">
+            <div id="navigators" class="col-md-3 px-1">
+                <div id="sidenav" class="py-2 sticky-topflex-grow-1">
+                    <div class="nav flex-md-column">
+                        <div class="col-md-12">
+                            <center>
+                                <!-- <i id="avatar" class="far fa-user-circle"></i><br> -->
+                                <img id="avatar" src="./public/assets/avatar.png" class="img-circle" alt="Cinque Terre">
+                                <button id="toDashBoard" type="button"
+                                    class="sideButton btn btn-outline-warning">DashBoard</button><br>
+                                <button id="toAboutUs" type="button" class="sideButton btn btn-outline-warning">About
+                                    Us</button><br>
+                                <button id="logout" type="button" class="sideButton btn btn-outline-warning">Log
+                                    Out</button>
+                            </center>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </center>
-    </div>
-    <br>
-    <br>
-    <div class="container">
-        <div id="mapid" class="col-md-12">
+            <div class="col" id="main">
+                <div class="col-md-12">
+                    <div id="aboutUs" class="row">
+                        <div id="header" class="col-md-12">
+
+                        </div>
+                        <div class="col-md-12">
+                            <center>
+                                <div id="subHeader" class="row">
+                                    <h3><i>About us...</i></h3>
+                                </div>
+                            </center>
+                        </div>
+                        <div id="separator" class="col-md-12">
+
+                        </div>
+                        <div class="col-md-12 d-flex justify-content-md-center">
+                            <div class="aboutUs card" style="width: 13rem;">
+                                <div class="cardHeader">
+                                    <center>
+                                        <img class="pictures img-responsive"
+                                            src="https://images.unsplash.com/photo-1439402702863-6434b61e6392?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60"
+                                            alt="Card image cap">
+                                    </center>
+                                </div>
+                                <div class="card-body">
+                                </div>
+                            </div>
+                            <div class="aboutUs card" style="width: 13rem;">
+                                <div class="cardHeader">
+                                    <center>
+                                        <img class="pictures img-responsive"
+                                            src="https://images.unsplash.com/photo-1439402702863-6434b61e6392?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60"
+                                            alt="Card image cap">
+                                    </center>
+                                </div>
+                                <div class="card-body">
+                                </div>
+                            </div>
+                            <div class="aboutUs card" style="width: 13rem;">
+                                <div class="cardHeader">
+                                    <center>
+                                        <img class="pictures img-responsive"
+                                            src="https://images.unsplash.com/photo-1439402702863-6434b61e6392?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60"
+                                            alt="Card image cap">
+                                    </center>
+                                </div>
+                                <div class="card-body">
+                                </div>
+                            </div>
+                            <div class="aboutUs card" style="width: 13rem;">
+                                <div class="cardHeader">
+                                    <center>
+                                        <img class="pictures img-responsive"
+                                            src="https://images.unsplash.com/photo-1439402702863-6434b61e6392?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60"
+                                            alt="Card image cap">
+                                    </center>
+                                </div>
+                                <div class="card-body">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="DashBoard" class="row">
+                        <div id="mapid" class="col-md-12">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <script type="text/javascript" src="location.js"></script>
+        <script type="text/javascript" src="./public/scripts/event.js"></script>
+        <script type="text/javascript" src="./public/scripts/controller.js"></script>
+        <script type="text/javascript" src="./public/scripts/browserMqtt.js"></script>
 </body>
 
 </html>

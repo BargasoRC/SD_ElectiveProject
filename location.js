@@ -9,7 +9,6 @@ $(document).ready(function () {
   $.ajax(settings).done(function (response) {
     console.log(response);
   });
-  console.log('testing')
 
   // var mymap = L.map('mapid').setView([10.3157, 123.8854], 13);
   var mymap = L.map('mapid').setView([10.35792355, 123.91102580699], 12.5);
