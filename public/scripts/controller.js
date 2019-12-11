@@ -2,6 +2,20 @@ $(document).ready(function () {
   var mymap = "";
   var fireLocations = [];
   var markers = [];
+  var months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ]
   client = mqtt.connect("wss://test.mosquitto.org:8081/mqtt")
   client.subscribe("flammes", function (err) {
     if (err) {
@@ -17,7 +31,14 @@ $(document).ready(function () {
 
   client.on("message", function (topic, payload) {
     let arr = new TextDecoder().decode(new Uint8Array(payload))
+    let timeStamp = new Date();
+    let day = timeStamp.getDate();
+    let month = months[timeStamp.getMonth()];
+    let year = timeStamp.getFullYear();
+    let date = month+" "+day+", "+year+" "+Date.now()
     let data = "{" + arr + "}"
+    var rowData = "<tr><td>"+date+"</td><td>"+data+"</td></tr>"
+    $('tbody').append(rowData);
     locate(data)
   })
 

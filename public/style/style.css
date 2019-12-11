@@ -188,4 +188,13 @@ input:valid~label {
     margin-bottom:50px;
     z-index: 10;
 }
+#locations{
+    margin-top:30px;
+    height:500px;
+    overflow-y: scroll;
+    padding:0px;
+    border:2px solid #E25822;
+    border-bottom:5px solid black;
+}
+
 /*--end of admin styling--*/
