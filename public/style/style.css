@@ -128,7 +128,7 @@ input:valid~label {
 #navigators{
     background:#E25822;
     z-index:2;
-    min-height: calc(100vh - 70px)!important;
+    min-height:100vh !important;
 }
 #main{
     padding-left: 10px;
@@ -136,7 +136,7 @@ input:valid~label {
 }
 #sidenav{
     background:black;
-    min-height: calc(100vh - 70px)!important;
+    min-height:100vh !important;
 }
 .sideButton{
     width:80%;

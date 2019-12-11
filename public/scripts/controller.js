@@ -110,7 +110,7 @@ $(document).ready(function () {
       var marker = L.marker([fireLocations[i].latitude, fireLocations[i].longitude]);
       markers.push(marker)
       var mark = L.layerGroup(markers).addTo(mymap)
-      // var circle = L.circle([51.508, -0.11], {
+      // var circle = L.circle([latitude, longitude], {
       //     color: 'red',
       //     fillColor: '#f03',
       //     fillOpacity: 0.5,
@@ -121,38 +121,20 @@ $(document).ready(function () {
       //     [51.503, -0.06],
       //     [51.51, -0.047]
       // ]).addTo(mymap);
-      // var popup = L.popup()
-      //   .setLatLng([fireLocations[i].latitude, fireLocations[i].longitude])
-      //   .setContent("House Fire Detected!")
-      //   .openOn(mymap);
+      var popup = L.popup()
+        .setLatLng([latitude,longitude])
+        .setContent("House Fire Detected!")
+        .openOn(mymap);
       if (confirmation) {
         mark.clearLayers();
-        // console.log(JSON.stringify(markers))
-        // var obj = {};
-
-        // for (var i = 0, len = things.thing.length; i < len; i++)
-        //   obj[things.thing[i]['place']] = things.thing[i];
-
-        // things.thing = new Array();
-        // for (var key in obj)
-        //   things.thing.push(obj[key]);
         var obj = {};
-
         for (var i = 0, len = markers.length; i < len; i++)
           obj[markers[i]['place']] = markers[i];
-
         var a = new Array();
         for (var key in obj)
           a.push(obj[key]);
         mark = L.layerGroup(a).addTo(mymap)
         markers = a;
-        // console.log(a)
-        // mymap.removelayer(marker)
-        // markerGroup.eachLayer(function(layer){
-        //   markerGroup.removeLayer(layer)
-        //   console.log(layer._leaflet_id) 
-        // })
-        console.log('remove')
       }
     }
   }
