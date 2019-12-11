@@ -1,6 +1,7 @@
 $(document).ready(function () {
   var mymap = "";
   var fireLocations = [];
+  var markers = [];
   client = mqtt.connect("wss://test.mosquitto.org:8081/mqtt")
   client.subscribe("flammes", function (err) {
     if (err) {
@@ -79,9 +80,9 @@ $(document).ready(function () {
       console.log('alarm')
       fireLocations.push(Location)
     } else {
-      for(var i = 0 ; i < fireLocations.length; ++i){
-        if(Location.latitude === fireLocations[i].latitude && Location.longitude === fireLocations[i].longitude){
-          fireLocations = fireLocations.splice(i,1);
+      for (var i = 0; i < fireLocations.length; ++i) {
+        if (Location.latitude === fireLocations[i].latitude && Location.longitude === fireLocations[i].longitude) {
+          fireLocations = fireLocations.splice(i, 1);
           confirmation = true
         }
       }
@@ -102,11 +103,13 @@ $(document).ready(function () {
       //   .setContent("House Fire Detected!")
       //   .openOn(mymap);
     }
-    mark(confirmation)
+    mark(Location.latitude, Location.longitude, confirmation)
   }
-  function mark(confirmation) {
+  function mark(latitude, longitude, confirmation) {
     for (var i = 0; i < fireLocations.length; ++i) {
-      var marker = L.marker([Location.latitude, Location.longitude]).addTo(mymap);
+      var marker = L.marker([fireLocations[i].latitude, fireLocations[i].longitude]);
+      markers.push(marker)
+      var mark = L.layerGroup(markers).addTo(mymap)
       // var circle = L.circle([51.508, -0.11], {
       //     color: 'red',
       //     fillColor: '#f03',
@@ -123,7 +126,28 @@ $(document).ready(function () {
       //   .setContent("House Fire Detected!")
       //   .openOn(mymap);
       if (confirmation) {
-        mymap.removelayer(marker)
+        mark.clearLayers();
+        // console.log(JSON.stringify(markers))
+        // var obj = {};
+
+        // for (var i = 0, len = things.thing.length; i < len; i++)
+        //   obj[things.thing[i]['place']] = things.thing[i];
+
+        // things.thing = new Array();
+        // for (var key in obj)
+        //   things.thing.push(obj[key]);
+        var obj = {};
+
+        for (var i = 0, len = markers.length; i < len; i++)
+          obj[markers[i]['place']] = markers[i];
+
+        var a = new Array();
+        for (var key in obj)
+          a.push(obj[key]);
+        mark = L.layerGroup(a).addTo(mymap)
+        markers = a;
+        // console.log(a)
+        // mymap.removelayer(marker)
         // markerGroup.eachLayer(function(layer){
         //   markerGroup.removeLayer(layer)
         //   console.log(layer._leaflet_id) 
