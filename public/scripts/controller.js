@@ -18,9 +18,6 @@ $(document).ready(function () {
   client.on("message", function (topic, payload) {
     let arr = new TextDecoder().decode(new Uint8Array(payload))
     let data = "{" + arr + "}"
-    // console.log(data)
-    // console.log([topic, payload].join(": "));
-    // client.end();
     locate(data)
   })
 
